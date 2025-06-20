@@ -1,36 +1,107 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Exchange Rate API Comparison Tool
+
+A simple web UI for comparing exchange rates from three different APIs. This tool allows you to test and compare the performance, accuracy, and response times of various currency exchange rate services.
+
+
+## Supported APIs
+
+1. **ExchangeRate.host**
+2. **OpenExchangeRates**
+3. **CurrencyAPI.com**
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
+- Node.js (version 18 or higher)
+- npm or yarn
+- API keys for all three APIs
+
+### Installation
+
+1. Clone the repository:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone <repository-url>
+cd exchange-rate-test-ui
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Install dependencies:
+```bash
+npm install
+```
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+3. Create .env file
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+4. Add API keys to .env
+```bash
+EXCHANGE_RATE_HOST_API_KEY="your_api_key"
+OPEN_EXCHANGE_RATES_API_KEY="your_api_key"
+CURRENCY_API_API_KEY="your_api_key"
+```
 
-## Learn More
+5. Run the development server:
+```bash
+npm run dev
+```
 
-To learn more about Next.js, take a look at the following resources:
+6. Open [http://localhost:3000](http://localhost:3000) in your browser
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Usage
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. **Select Currencies**: Choose the "From" and "To" currencies from the dropdown menus
+2. **Enter Amount**: Input the amount you want to convert
+3. **Convert**: Click the "Convert Currency" button to get results from all three APIs
+4. **Compare Results**: View the conversion results, exchange rates, and response times side by side
+5. **Inspect Data**: Click "Show Raw JSON" to view the complete API responses
 
-## Deploy on Vercel
+## Project Structure
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```
+app/
+├── components/
+│   ├── CurrencySelector.js    # Currency selection interface
+│   ├── ConvertButton.js       # Convert button component
+│   └── ApiResults.js          # Results display component
+├── services/
+│   ├── exchangeRateHost.js    # ExchangeRate.host API service
+│   ├── openExchangeRates.js   # OpenExchangeRates API service
+│   ├── currencyApi.js         # CurrencyAPI.com API service
+│   └── exchangeRateManager.js # Main service coordinator
+├── page.js                    # Main application page
+└── layout.js                  # App layout
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Development
+
+### Adding New APIs
+
+To add a new exchange rate API:
+
+1. Create a new service file in `app/services/`
+2. Implement the required methods:
+   - `convertCurrency(from, to, amount)`
+   - `getSupportedCurrencies()`
+3. Add the service to `ExchangeRateManager`
+4. Update the UI components if needed
+
+### Customization
+
+- **Styling**: Modify Tailwind classes in components
+- **API Configuration**: Update service files with your API keys
+- **Additional Features**: Extend components and services as needed
+
+## Technologies Used
+
+- **Next.js 15** - React framework
+- **React 19** - UI library
+- **Tailwind CSS** - Styling
+- **JavaScript ES6+** - Modern JavaScript features
+
+## Notes
+
+- All APIs have different rate limits and terms of service. Check their documentation for production use.
+- Response times may vary based on network conditions and API server load.
+
+## License
+
+This project is for educational and testing purposes. Please respect the terms of service for each API provider.
