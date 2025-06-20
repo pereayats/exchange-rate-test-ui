@@ -59,14 +59,14 @@ npm run dev
 ```
 app/
 ├── components/
-│   ├── CurrencySelector.js    # Currency selection interface
-│   ├── ConvertButton.js       # Convert button component
 │   └── ApiResults.js          # Results display component
+│   └── ApiTester.js           # Currency selection interface
 ├── services/
 │   ├── exchangeRateHost.js    # ExchangeRate.host API service
 │   ├── openExchangeRates.js   # OpenExchangeRates API service
 │   ├── currencyApi.js         # CurrencyAPI.com API service
 │   └── exchangeRateManager.js # Main service coordinator
+├── actions.js                 # Server actions for the client
 ├── page.js                    # Main application page
 └── layout.js                  # App layout
 ```
